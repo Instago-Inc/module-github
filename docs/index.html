@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>github Documentation</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 48px 24px;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: #e2e8f0;
+      }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 28px;
+      }
+      .intro {
+        font-size: 16px;
+        color: #e2e8f0;
+      }
+      p {
+        margin: 0 0 16px;
+        color: #cbd5f5;
+      }
+      ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+      a {
+        color: #93c5fd;
+      }
+      .section {
+        margin-top: 28px;
+      }
+      .muted {
+        color: #94a3b8;
+        font-size: 14px;
+        margin: 6px 0 0;
+      }
+      .code {
+        background: #0b1220;
+        border: 1px solid #1e293b;
+        border-radius: 10px;
+        padding: 16px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 13px;
+        line-height: 1.5;
+        color: #e2e8f0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>module/github - V8 module</h1>
+      <p class="intro">Create and manage GitHub issues from workflows without leaving your automation. This module wraps common issue actions so you can file, update, and discuss work in a consistent way.</p>
+      <p class="muted">Learn more at <a href="https://instago.ai" target="_blank" rel="noopener">https://instago.ai</a>.</p>
+      <div class="section">
+        <h2>Technical reference</h2>
+        <h1>module/github - V8 module</h1>
+<p>Create and manage GitHub issues from workflows without leaving your automation. This module wraps common issue actions so you can file, update, and discuss work in a consistent way.</p>
+<p>It is designed for the embedded V8 runtime in this repo and is a good fit for small, reliable workflow steps. Learn more at https://instago.ai.</p>
+<h2>Technical reference</h2>
+<p>Exports:</p>
+<ul>
+<li><code>configure({ token?, owner?, repo?, baseUrl?, userAgent?, repoUrl? })</code></li>
+<li><code>createIssue({ owner?, repo?, title, body?, labels?, assignees?, milestone?, token? })</code></li>
+<li><code>updateIssue({ owner?, repo?, number, title?, body?, state?, labels?, assignees?, milestone?, token? })</code></li>
+<li><code>closeIssue({ owner?, repo?, number, token? })</code></li>
+<li><code>addComment({ owner?, repo?, number, body, token? })</code></li>
+<li><code>listIssues({ owner?, repo?, state?, labels?, page?, per_page?, since?, sort?, direction?, includePullRequests?, token? })</code></li>
+</ul>
+<p>Configuration:</p>
+<ul>
+<li>Optional env keys: <code>github.owner</code>, <code>github.repo</code>, <code>github.repoUrl</code>, <code>github.token</code></li>
+<li><code>configure(...)</code> overrides env values for future calls.</li>
+</ul>
+<p>Usage:</p>
+<ul>
+<li>Provide a token via <code>configure({ token })</code> or per call via <code>token</code>.</li>
+<li>Provide repo details via <code>owner</code>/<code>repo</code>, or <code>repoUrl</code>, or env values.</li>
+<li>Returns <code>{ ok, data, error, details? }</code> depending on the call outcome.</li>
+</ul>
+<p>Examples:</p>
+<pre class="code"><code>
+const github = require(&#x27;github@latest&#x27;);
+
+github.configure({
+  token: env.GITHUB_TOKEN,
+  owner: &#x27;acme&#x27;,
+  repo: &#x27;project&#x27;
+});
+
+const created = await github.createIssue({
+  title: &#x27;Bug report&#x27;,
+  body: &#x27;Steps to reproduce...&#x27;
+});
+
+if (created.ok) {
+  await github.addComment({ number: created.data.number, body: &#x27;Thanks for the report.&#x27; });
+  await github.updateIssue({ number: created.data.number, labels: [&#x27;triage&#x27;] });
+}
+</code></pre>
+<pre class="code"><code>
+const github = require(&#x27;github@latest&#x27;);
+
+const list = await github.listIssues({
+  repoUrl: &#x27;https://github.com/acme/project&#x27;,
+  state: &#x27;open&#x27;,
+  labels: [&#x27;bug&#x27;],
+  includePullRequests: false,
+  token: env.GITHUB_TOKEN
+});
+</code></pre>
+      </div>
+      
+    </main>
+  </body>
+</html>

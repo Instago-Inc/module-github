@@ -1,0 +1,17 @@
+{
+  "name": "@instago/github",
+  "version": "1.0.1",
+  "description": "Module github",
+  "main": "index.js",
+  "type": "commonjs",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "instago",
+    "github"
+  ],
+  "files": [
+    "index.js",
+    "ReadMe.MD",
+    "LICENSE"
+  ]
+}
