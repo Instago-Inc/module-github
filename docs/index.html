@@ -59,13 +59,13 @@
   <body>
     <main>
       <h1>module/github - V8 module</h1>
-      <p class="intro">Create and manage GitHub issues from workflows without leaving your automation. This module wraps common issue actions so you can file, update, and discuss work in a consistent way.</p>
+      <p class="intro">Ship issue updates to GitHub without leaving your workflows. This module keeps the common issue actions close to your automation so you can track work as it happens.</p>
       <p class="muted">Learn more at <a href="https://instago.ai" target="_blank" rel="noopener">https://instago.ai</a>.</p>
       <div class="section">
         <h2>Technical reference</h2>
         <h1>module/github - V8 module</h1>
-<p>Create and manage GitHub issues from workflows without leaving your automation. This module wraps common issue actions so you can file, update, and discuss work in a consistent way.</p>
-<p>It is designed for the embedded V8 runtime in this repo and is a good fit for small, reliable workflow steps. Learn more at https://instago.ai.</p>
+<p>Ship issue updates to GitHub without leaving your workflows. This module keeps the common issue actions close to your automation so you can track work as it happens.</p>
+<p>It is built for the embedded V8 runtime used in this repo. Learn more at https://instago.ai.</p>
 <h2>Technical reference</h2>
 <p>Exports:</p>
 <ul>
@@ -79,12 +79,13 @@
 <p>Configuration:</p>
 <ul>
 <li>Optional env keys: <code>github.owner</code>, <code>github.repo</code>, <code>github.repoUrl</code>, <code>github.token</code></li>
-<li><code>configure(...)</code> overrides env values for future calls.</li>
+<li><code>configure(...)</code> stores defaults for future calls.</li>
+<li><code>baseUrl</code> and <code>userAgent</code> in <code>configure(...)</code> override the GitHub API base and user agent.</li>
 </ul>
 <p>Usage:</p>
 <ul>
 <li>Provide a token via <code>configure({ token })</code> or per call via <code>token</code>.</li>
-<li>Provide repo details via <code>owner</code>/<code>repo</code>, or <code>repoUrl</code>, or env values.</li>
+<li>Resolve the repo via <code>owner</code>/<code>repo</code>, or <code>repoUrl</code>, or the env defaults.</li>
 <li>Returns <code>{ ok, data, error, details? }</code> depending on the call outcome.</li>
 </ul>
 <p>Examples:</p>
@@ -119,7 +120,15 @@ const list = await github.listIssues({
 });
 </code></pre>
       </div>
-      
+      <div class="section">
+  <h2>Changelog</h2>
+  <h2>v1.0.1 - GitHub module initial release</h2>
+<p>Initial release for the Instago GitHub module, documenting the earliest artifacts that let consumers install and explore the package. The entry highlights the availability of the module and the baseline files that ship with it.</p>
+<h3>Added</h3>
+<ul>
+<li>Introduced the Instago GitHub module with the published package metadata, README, license, and entry-point bundle for future integrations.</li>
+</ul>
+</div>
     </main>
   </body>
 </html>

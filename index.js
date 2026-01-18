@@ -1,4 +1,4 @@
-// github@1.0.0 - minimal helper for creating GitHub issues
+// github@latest - minimal helper for creating GitHub issues
 // API:
 //   configure({ token?, owner?, repo?, baseUrl?, userAgent?, repoUrl? })
 //   createIssue({ owner?, repo?, title, body?, labels?, assignees?, milestone?, token? })
@@ -9,8 +9,8 @@
 //   listIssues({ owner?, repo?, state?, labels?, page?, per_page?, since?, sort?, direction?, includePullRequests?, token? })
 
 (function(){
-  const http = require('http@1.0.0');
-  const log = require('log@1.0.0').create('github');
+  const http = require('http@latest');
+  const log = require('log@latest').create('github');
 
   const cfg = {
     token: null,
@@ -268,10 +268,10 @@
 
 // Minimal self-test using stubbed http.json (no real network)
 if (require.main === module) {
-  const originalHttp = require.cache && require.cache[require.resolve('http@1.0.0')];
+  const originalHttp = require.cache && require.cache[require.resolve('http@latest')];
   try {
     // Stub http.json
-    require.cache[require.resolve('http@1.0.0')] = {
+    require.cache[require.resolve('http@latest')] = {
       exports: {
         json: async (req) => ({
           status: 201,
@@ -289,6 +289,6 @@ if (require.main === module) {
     process.exit(1);
   } finally {
     // restore cache entry if it existed
-    if (originalHttp) require.cache[require.resolve('http@1.0.0')] = originalHttp;
+    if (originalHttp) require.cache[require.resolve('http@latest')] = originalHttp;
   }
 }

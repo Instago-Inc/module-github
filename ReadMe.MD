@@ -1,8 +1,8 @@
 # module/github - V8 module
 
-Create and manage GitHub issues from workflows without leaving your automation. This module wraps common issue actions so you can file, update, and discuss work in a consistent way.
+Ship issue updates to GitHub without leaving your workflows. This module keeps the common issue actions close to your automation so you can track work as it happens.
 
-It is designed for the embedded V8 runtime in this repo and is a good fit for small, reliable workflow steps. Learn more at https://instago.ai.
+It is built for the embedded V8 runtime used in this repo. Learn more at https://instago.ai.
 
 ## Technical reference
 
@@ -16,11 +16,12 @@ Exports:
 
 Configuration:
 - Optional env keys: `github.owner`, `github.repo`, `github.repoUrl`, `github.token`
-- `configure(...)` overrides env values for future calls.
+- `configure(...)` stores defaults for future calls.
+- `baseUrl` and `userAgent` in `configure(...)` override the GitHub API base and user agent.
 
 Usage:
 - Provide a token via `configure({ token })` or per call via `token`.
-- Provide repo details via `owner`/`repo`, or `repoUrl`, or env values.
+- Resolve the repo via `owner`/`repo`, or `repoUrl`, or the env defaults.
 - Returns `{ ok, data, error, details? }` depending on the call outcome.
 
 Examples:
